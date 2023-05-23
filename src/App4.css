@@ -1,0 +1,15 @@
+button {
+  padding: 5px 10px;
+  border: 2px solid tomato;
+  background-color: transparent;
+  color: tomato;
+  border-radius: 10px;
+  margin: 5px;
+  transition: all 0.3s ease-in-out;
+  font-weight: bold;
+}
+button:hover {
+  background-color: lightseagreen;
+  border-color: lightseagreen;
+  color: white;
+}

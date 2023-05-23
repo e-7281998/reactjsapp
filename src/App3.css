@@ -1,0 +1,11 @@
+div div div {
+  text-align: center;
+  border: 1px solid #333;
+  margin: 15px;
+  border-radius: 10px;
+}
+
+ul {
+  list-style: none;
+  background-color: silver;
+}

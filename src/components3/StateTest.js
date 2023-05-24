@@ -1,4 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
 function StateTest(props) {
   var a = 100;
@@ -14,12 +20,19 @@ function StateTest(props) {
   const nameRef = useRef();
   const ageRef = useRef();
 
-  const handleIncrement = () => {
+  //성능향상을 위해 함수를 rendering시마다 재정의할 필요가 없다.
+  //useCallback 특정값 변경시에만 다시 생성한다.
+  const handleIncrement = useCallback(() => {
     setCounter(counter + 1);
-  };
-  const handleDecrement = () => {
+  }, [counter]);
+
+  const handleDecrement = useCallback(() => {
     setCounter(counter - 1);
-  };
+  }, [counter]);
+
+  useEffect(() => {
+    console.log("handleIncrement가 변경되었습니다.");
+  }, [handleIncrement]);
 
   //
   const handleChange = (e) => {
@@ -98,11 +111,25 @@ function StateTest(props) {
     nextMid.current += 1;
   };
 
+  //useMemo : 연산된 값을 저장해서 재사용, 오래걸리는 작업을 매번 하지말자
+  const longTimeFunction = (su) => {
+    console.log("longTimeFunction 호출함. 계산 중... su : " + su);
+    for (let i = 1; i <= 100000000; i++) {
+      su += i;
+    }
+    return su;
+  };
+  //count가 변경되지 않는다면 계산결과는 같기 때문에 재계산이 불필요, 계산된 결과를 기억하기
+  //[의존배열에 등록된 변수]가 변경시에만 재계산한다.  (성능 향상을 위해 필요)
+  //var calc = longTimeFunction(counter); 와 같이 작성하면 counter값이 변경되지 않아도 실행됨...
+  var calc = useMemo(() => longTimeFunction(counter), [counter]);
+
   //React 문법 : JSX : Javascript XML : 바벨에 의해서 컴파일된다.(js > js)
   //var output = "<div></div>", render(output);
   //Root는 1개, 계층 구조 지켜야 함, 반드시 닫는 tag
   return (
     <div>
+      <p>오래 걸려서 계산한 값 : {calc}</p>
       <>
         <p>A : {a}</p>
         <p>B : {b}</p>
@@ -119,6 +146,9 @@ function StateTest(props) {
           <span>이름</span>
           <input value={myAge} name="age" onChange={handleChange} />
         </label>
+
+        <button onClick={handleIncrement}>counter 증가</button>
+        <button onClick={handleDecrement}>counter 감소</button>
       </>
       <hr />
       <div>

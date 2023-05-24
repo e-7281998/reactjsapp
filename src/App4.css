@@ -3,8 +3,8 @@ button {
   border: 2px solid tomato;
   background-color: transparent;
   color: tomato;
-  border-radius: 10px;
-  margin: 5px;
+  border-radius: 10px !important;
+  margin: 5px !important;
   transition: all 0.3s ease-in-out;
   font-weight: bold;
 }

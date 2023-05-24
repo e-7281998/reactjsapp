@@ -10,7 +10,7 @@ function StateTest(props) {
   const [myName, setMyName] = useState("이진기");
   const [myAge, setMyAge] = useState(35);
 
-  //특정 DOM 선택을 위해 사용
+  //useRef: 1.특정 DOM 선택을 위해 사용
   const nameRef = useRef();
   const ageRef = useRef();
 
@@ -83,14 +83,17 @@ function StateTest(props) {
 
   const [member, setMember] = useState({});
   const [memberList, setMemberList] = useState(initMember);
-  const nextMid = useRef(3);
+  const nextMid = useRef(4);
   const handleChange2 = (e) => {
+    var memberValue =
+      e.target.name == "active" ? e.target.checked : e.target.value;
     //이름 변경시, 이메일 변경시
-    setMember({ ...member, [e.target.name]: e.target.value });
+    setMember({ ...member, [e.target.name]: memberValue });
   };
   const handleAdd = (e) => {
     //setMember({ ...member, mid: nextMid.current }); //setter는 비동기로 동작...하므로 다음의 코드로 작성
-    var tempMember = { ...member, mid: nextMid.current, active: true }; //동기
+    // var tempMember = { ...member, mid: nextMid.current, active: true }; //동기
+    var tempMember = { ...member, mid: nextMid.current }; //동기
     setMemberList([...memberList, tempMember]);
     nextMid.current += 1;
   };
@@ -156,6 +159,10 @@ function StateTest(props) {
             <span>이메일</span>
             <input name="email" onChange={handleChange2} />
           </label>
+          <label>
+            <span>active</span>
+            <input type="checkbox" name="active" onChange={handleChange2} />
+          </label>
           <button onClick={handleAdd}>멤버추가</button>
         </>
         <table border="1">
@@ -174,7 +181,8 @@ function StateTest(props) {
                   <td>{item.mid} </td>
                   <td>{item.mname}</td>
                   <td>{item.email}</td>
-                  <td>{item.active.toString()}</td>
+                  {/* <td>{item.active.toString()}</td> */}
+                  <td>{item.active ? "true" : "false"}</td>
                 </tr>
               ))}
           </tbody>

@@ -4,7 +4,7 @@ import "index.css";
 import App from "./App";
 import reportWebVitals from "reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
-import App4 from "App4";
+import App5 from "App5";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -12,7 +12,8 @@ root.render(
   // <MyJSXTest />
   // <WebBoardList />
   // <App3 />
-  <App4 />
+  // <App4 />
+  <App5 />
   // </React.StrictMode>
 );
 

@@ -5,6 +5,8 @@ import App from "./App";
 import reportWebVitals from "reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
 import App5 from "App5";
+import { CounterProvider } from "components4/CounterProvider";
+import { CountLabel, NameChange, PlusButton } from "components4/ProviderTest";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -12,7 +14,14 @@ root.render(
   // <MyJSXTest />
   // <WebBoardList />
   // <App3 />
-  <App5 />
+  <>
+    <App5 />
+    <CounterProvider>
+      <CountLabel />
+      <PlusButton />
+      <NameChange />
+    </CounterProvider>
+  </>
 
   // </React.StrictMode>
 );

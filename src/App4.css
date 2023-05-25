@@ -1,3 +1,10 @@
+.container {
+  text-align: center;
+  margin-top: 20px;
+}
+.container div {
+  padding: 10px;
+}
 button {
   padding: 5px 10px;
   border: 2px solid tomato;
@@ -12,4 +19,55 @@ button:hover {
   background-color: lightseagreen;
   border-color: lightseagreen;
   color: white;
+}
+
+p {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+label {
+  display: inline-block;
+  width: 100%;
+  padding: 10px;
+}
+
+label span {
+  margin-right: 10px;
+}
+
+table {
+  display: inline-block;
+  max-height: 300px;
+  /* width: 500px; */
+  overflow-y: scroll;
+  background-color: rgba(231, 207, 251, 0.271);
+}
+
+thead td {
+  background-color: rgba(137, 43, 226, 0.271);
+  text-align: center;
+  padding: 5px;
+  font-weight: bold;
+}
+
+tbody tr:hover {
+  background-color: rgba(255, 255, 0, 0.406);
+}
+
+tr td button {
+  font-size: 13px;
+  background-color: orange;
+  border: none;
+  color: white;
+  opacity: 0.5;
+}
+tr td button:hover {
+  background-color: orange;
+  opacity: 1;
+}
+
+tbody td {
+  text-align: center;
+  padding: 5px;
 }

@@ -43,7 +43,7 @@ function reducer2(state, action) {
       };
     case "CREATE_MEMBER": //멤버 추가시 호출 [...memberList, action.member] //concat : 기존 배열에 파라미터 값 추가
       return {
-        input: state.input,
+        input: initMember2.input,
         memberList: state.memberList.concat(action.member),
       };
     case "TOGGLE_MEMBER": //active 변경
@@ -112,6 +112,10 @@ function ReducerTestComponent2(props) {
   const { memberList } = state; //배열 (값 추출?) //추출안하면 state.memberList라고 사용해야함
   const { membername, email, active } = state.input; //문자값 (추출 ?) //state.input.membername이라고 쓰기 싫어서...
 
+  //DOM 접근을 위해 추가... nameRef.curruent.focus(), nameRef.curent.value = ""
+  const nameRef = useRef();
+  const emailRef = useRef();
+
   const nextMemberId = useRef(4);
 
   //등록, 수정, 삭제 , 목록보기
@@ -141,6 +145,7 @@ function ReducerTestComponent2(props) {
     };
     dispatcher2({ type1: "CREATE_MEMBER", member: newMember });
     nextMemberId.current += 1;
+    emailRef.current.value = "";
   };
 
   //member의 active 변경하기
@@ -159,6 +164,11 @@ function ReducerTestComponent2(props) {
       <CreateMember
         handleChange={handleChange}
         handleMemberAdd={handleMemberAdd}
+        membername={membername}
+        email={email}
+        active={active}
+        nameRef={nameRef}
+        emailRef={emailRef}
       />
       <MemberList
         memberList={memberList}
@@ -207,20 +217,33 @@ const MemberList = ({ memberList, handleDelete, handleToggle }) => {
   );
 };
 
-function CreateMember({ handleChange, handleMemberAdd }) {
+function CreateMember({
+  handleChange,
+  handleMemberAdd,
+  membername,
+  email,
+  active,
+  nameRef,
+  emailRef,
+}) {
   return (
     <div>
       <label>
         <span>이름</span>
-        <input name="membername" onChange={handleChange} />
+        <input name="membername" onChange={handleChange} value={membername} />
       </label>
       <label>
         <span>이메일</span>
-        <input name="email" onChange={handleChange} />
+        <input name="email" onChange={handleChange} ref={emailRef} />
       </label>
       <label>
         <span>active</span>
-        <input type="checkbox" name="active" onChange={handleChange} />
+        <input
+          type="checkbox"
+          name="active"
+          onChange={handleChange}
+          checked={active}
+        />
       </label>
       <button onClick={handleMemberAdd}>멤버 추가하기</button>
     </div>

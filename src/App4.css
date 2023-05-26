@@ -38,21 +38,28 @@ label span {
 
 table {
   display: inline-block;
-  max-height: 300px;
+  max-height: 400px;
   /* width: 500px; */
   overflow-y: scroll;
   background-color: rgba(231, 207, 251, 0.271);
 }
 
-thead td {
+thead td,
+thead th {
   background-color: rgba(137, 43, 226, 0.271);
   text-align: center;
   padding: 5px;
   font-weight: bold;
 }
 
+tbody tr {
+  transition: all 0.3s ease-in-out;
+}
 tbody tr:hover {
   background-color: rgba(255, 255, 0, 0.406);
+}
+tbody tr:nth-child(2n):hover {
+  background-color: rgba(132, 255, 0, 0.406);
 }
 
 tr td button {
@@ -70,4 +77,14 @@ tr td button:hover {
 tbody td {
   text-align: center;
   padding: 5px;
+}
+
+.registerBoard {
+  position: relative;
+}
+.registerBoard > a {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-right: 95px;
 }

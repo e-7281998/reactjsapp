@@ -12,6 +12,7 @@ import StateTestComponent from "components4/StateTestComponent";
 import ReducerTestComponent2 from "components4/ReducerTestComponent2";
 import BoardHome from "boardComponents/BoardHome";
 import SmartHome from "components3/SmartHome";
+import NotFoundComponent from "boardComponents/NotFoundComponent";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -36,6 +37,7 @@ root.render(
             </CounterProvider>
           }
         ></Route>
+        <Route path="*" element={<NotFoundComponent />} />
       </Routes>
     </BrowserRouter>
   </div>

@@ -10,7 +10,7 @@ function BoarDetail(props) {
     axios({
       method: "get",
       url: `/rest/webboard/view.do/${bno}`,
-      data: board,
+      // data: board,
     })
       .then((responseData) => {
         console.log(responseData.data);

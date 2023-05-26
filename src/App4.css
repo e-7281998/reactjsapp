@@ -88,3 +88,12 @@ tbody td {
   top: 0;
   margin-right: 95px;
 }
+.registerBoard > a button {
+  color: thistle;
+  border-color: thistle;
+}
+.registerBoard > a button:hover {
+  color: white;
+  border-color: cadetblue;
+  background-color: cadetblue;
+}
